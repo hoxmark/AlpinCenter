@@ -1,46 +1,69 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import sqlite3
-conn = sqlite3.connect('blogg.db')
-print "Opened database successfully"
-conn.execute(''' drop table nyheter''') #sletter den gamle.
 
-#Oppretter tabellen nyheter
-conn.execute('''create table nyheter (
-  id integer primary key autoincrement,
-  tittel text not null,
-  nyhet text not null,
-  forfatter text not null,
-  date text not null);''')
+import sqlite3
+conn = sqlite3.connect('alpin.db')
+print "Opened database successfully"
+#conn.execute(''' DROP TABLE members''')  # sletter den gamle.
+
+# Oppretter tabellen members
+
+conn.executescript('''
+DROP TABLE members;
+DROP TABLE utleiepakker;
+
+CREATE TABLE members (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL);
+
+  CREATE TABLE utleiepakker (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT ,
+    beskrivelse TEXT ,
+    ski TEXT ,
+    shoes TEXT ,
+    skiPoles TEXT ,
+    price INTEGER);
+    ''');
+
+
+
 print "Table created successfully"
 conn.close()
 
+# lagre data:
 
-#lagre data:
-
-conn = sqlite3.connect('blogg.db')
+conn = sqlite3.connect('alpin.db')
 print "Opened database successfully"
 with conn:
     cur = conn.cursor()
-    cur.execute("insert into nyheter values(1,'Sportsnytt','Landslaget vant','Ola Nordmann','200392')")
-    cur.execute("insert into nyheter values(2,'Sportsnytt','Landslaget vant igjen turneringen','Ola Nordmann','200392')")
-    cur.execute("insert into nyheter values(3,'Utenriksnytt','Vla bbla bla avlyst','Ola Nordmann','200392')")
+    cur.execute("INSERT INTO members (firstName, lastName) VALUES('Bjonn','Hox')")
+    cur.execute("INSERT INTO members (firstName, lastName) VALUES('Jorg','wim')")
+    cur.execute("INSERT INTO members (firstName, lastName) VALUES('Borg','Lie')")
+
+
+    cur.execute("INSERT INTO utleiepakker (id, name, beskrivelse, ski, shoes, skiPoles, price) VALUES(1, 'Bjørn Dæli Pakka','for det meste for de som går langrenn', 'Ski', 'Sko', 'staver', 100)");
 
 
 print "Data is inserted successfully"
 conn.close()
 
-
-#lese data:
-conn = sqlite3.connect('blogg.db')
+# lese data:
+conn = sqlite3.connect('alpin.db')
 print "Opened database successfully"
 with conn:
     cur = conn.cursor()
-    cur.execute("select * from nyheter")
+    cur.execute("SELECT * FROM members")
+    rows = cur.fetchall()
+    for row in rows:
+        print row
+
+
+    cur.execute("SELECT * FROM utleiepakker")
     rows = cur.fetchall()
     for row in rows:
         print row
 
 print "Data is selected successfully"
 conn.close()
-
