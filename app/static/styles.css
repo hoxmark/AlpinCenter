@@ -1,0 +1,39 @@
+h2 {
+    color: #41523b;
+}
+
+body {
+    background-color: lightblue;
+}
+
+.entries {
+    background-color: #edfaf5;
+    -webkit-border-radius: 10px;
+}
+
+input[type=text] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+}
+
+textarea{
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
