@@ -15,15 +15,20 @@ def login():
 
 @app.route('/utleie')
 def utleie():
-    return render_template('utleie.html')
+    dbM = dbManager();
+    utleiePakkene = dbM.getUtleiePakkeneFromDb();
+
+    return render_template('utleieHomePage.html', utleiePakkene=utleiePakkene)
 
 @app.route('/utleie/<pakkenummer>')
 def utleieWithPakkenummer(pakkenummer):
+
     print(pakkenummer)
     dbM = dbManager();
-    dbM.getUtleiePakkeFromDb(pakkenummer);
+    utleiePakkene = dbM.getUtleiePakkeneFromDb();
 
-    return render_template('utleie.html', pakkenummer=pakkenummer)
+    utleiePakke = dbM.getUtleiePakkeFromDb(pakkenummer);
+    return render_template('utleie.html', utleiePakke=utleiePakke, utleiePakkene=utleiePakkene)
 
 
 @app.route('/about')

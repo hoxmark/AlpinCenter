@@ -41,11 +41,22 @@ class dbManager:
     def getUtleiePakkeFromDb(self, pakkenummer):
         print("getting pakkenummer from DB")
         db = get_db()
-        cur = db.execute('select * from utleiepakker WHERE '+pakkenummer)
+        cur = db.execute('select * from utleiepakker WHERE id = '+pakkenummer)
         entries = cur.fetchone()
-        print(entries)
-        print ('Innlegget ble sendt og lagret i databasen')
+        utleiePakke = UtleiePakke(entries[0], entries[1], entries[2], entries[3], entries[4],entries[5], entries[6])
+        print ('hentet ut: '+utleiePakke.name)
+        return utleiePakke
 
+    def getUtleiePakkeneFromDb(self):
+        utleiePakkene = []
+        db = get_db()
+        cur = db.execute('select * from utleiepakker')
+        entries = cur.fetchall()
+        for row in entries:
+            utleiePakkene.append(UtleiePakke(row[0], row[1], row[2], row[3], row[4],row[5], row[6]))
+        print ('Innlegget ble sendt og lagret i databasen')
+        print("get utleiepakkene")
+        return utleiePakkene
 
 
 
