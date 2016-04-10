@@ -1,0 +1,4 @@
+Flask
+Bootstrap
+sqlite3
+flask-nav
