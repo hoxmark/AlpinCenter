@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+
 Bootstrap(app)
 
 #import router/views

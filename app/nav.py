@@ -10,8 +10,9 @@ def mynavbar():
         'Ski Alpinanlegg',
         View('Home', 'index'),
         View('Utleie', 'utleie'),
+        View('Om oss', 'about'),
         View('Login', 'login'),
-        View('Om oss', 'about')
+        View('Min Side', 'minSide')
     )
 
 nav.init_app(app)

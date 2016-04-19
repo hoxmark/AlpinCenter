@@ -36,3 +36,25 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/minSide')
+def minSide():
+    memberId=0
+
+    dbM = dbManager();
+    member = dbM.getMember(memberId);
+    kvitteringHeiskort = dbM.getKvitteringHeiskort(memberId)
+    receiptUtleiepakker = dbM.getReceiptUtleiepakker(memberId)
+    print(receiptUtleiepakker)
+
+
+    listOfRecipts = kvitteringHeiskort + receiptUtleiepakker;
+
+    listOfRecipts.sort(key=lambda r: r.startTime)
+
+
+
+
+
+    return render_template('minSide.html', member=member, listOfRecipts=listOfRecipts)
+
+

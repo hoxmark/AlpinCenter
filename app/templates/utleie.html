@@ -50,7 +50,8 @@
                 <p>Du er nødt til å være innlogget for å bestille en pakke. </p>
                 <p> TODO: Du er ikke innlogget </p>
 
-                <h2> Leiemulighetene dine:</h2><br>
+                <h2>Leiemulighetene dine:</h2><br>
+                <h3>Voksen</h3>
 
                 <div class="row">
                     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -63,14 +64,39 @@
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <a class="btn btn-success">
                             Per dag <br>
-                            {{utleiePakke.price*6}} NOK
+                            {{utleiePakke.price*5}} NOK
 
                         </a>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <a class="btn btn-success">
                             Per uke <br>
-                            {{utleiePakke.price*6*6}} NOK
+                            {{utleiePakke.price*5*5}} NOK
+
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <h3>Barnepris**</h3>
+                 <div class="row">
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <a class="btn btn-success">
+                            Per time <br>
+                            {{utleiePakke.childPrice}} NOK
+
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <a class="btn btn-success">
+                            Per dag <br>
+                            {{((utleiePakke.childPrice*5))}} NOK
+
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <a class="btn btn-success">
+                            Per uke <br>
+                            {{(utleiePakke.childPrice*5*5)}} NOK
 
                         </a>
                     </div>
@@ -85,6 +111,10 @@
 
     </div>
 
+</div>
+
+<div>
+    <p class="pull-right">**Barnepris er kun for de under 10 år </p>
 </div>
 
 {% endblock %}
