@@ -6,15 +6,18 @@ app = Flask(__name__)
 
 Bootstrap(app)
 
+#gjor alt med databasen
+import DatabaseManager
+
 #import router/views
 import views
 
 #gjor alt med navigatorbaren her
 import nav
 
-#gjor alt med databasen
-import DatabaseManager
 
+#gjor alt med login
+import login
 
 # run it
 if __name__ == '__main__':

@@ -68,7 +68,6 @@ class dbManager:
         cur = db.execute('select * from members WHERE id =' + str(id))
         entries = cur.fetchone()
         member = Member(entries[0], entries[1], entries[2])
-        print ('hentet ut: ' + member.firstName)
         return member
 
     def getKvitteringHeiskort(self, id):
@@ -88,6 +87,14 @@ class dbManager:
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
         return receiptUtleiepakker
+
+
+
+
+    def registerNewMember(self, member):
+        print(member.name)
+        print(member.email)
+        print(member.password)
 
 
 class UtleiePakke:
@@ -115,14 +122,22 @@ class UtleiePakke:
 
 class Member:
     id = -1
-    firstName = ''
-    lastName = ''
+    name = ''
+    email = ''
+    password = ''
 
-    def __init__(self, id, firstName, lastName):
-        self.firstName = firstName
+
+    def __init__(self, id, name, email, password):
+        self.name = name
         self.id = id
-        self.lastName = lastName
+        self.email = email
+        self.password = password
 
+    def __init__(self, name, email, password):
+        self.name = name
+        self.id = -2
+        self.email = email
+        self.password = password
 
 class Heiskort:
     id = -1
@@ -219,3 +234,6 @@ class ReceiptUtleiepakker:
             return 'Super Pakka'
         else:
             return 'ulistet'
+
+
+dbM = dbManager();
