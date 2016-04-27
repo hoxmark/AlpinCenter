@@ -6,8 +6,10 @@ DROP TABLE if exists receiptUtleiepakker;
 
 CREATE TABLE members (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    firstName TEXT NOT NULL,
-    lastName TEXT NOT NULL
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    paidMember INTEGER
 );
 
 
@@ -51,9 +53,10 @@ CREATE TABLE utleiepakker (
 
 
 
-INSERT INTO members (id, firstName, lastName) VALUES(0, 'Ola','Normann');
-INSERT INTO members (id, firstName, lastName) VALUES(1, 'Kari','Normann');
-INSERT INTO members (id, firstName, lastName) VALUES(2, 'McGlagen','Normann');
+INSERT INTO members (id, name, email, password, paidMember) VALUES(0, 'Ola Normann', 'ola@norman.no', '123', 1 );
+INSERT INTO members (id, name, email, password, paidMember) VALUES(1, 'Kari Normann','Kari@norman.no', '123', 0);
+INSERT INTO members (id, name, email, password, paidMember) VALUES(2, 'McGlagen Normann','McGlagen@norman.no', '123', 1);
+INSERT INTO members (id, name, email, password, paidMember) VALUES(3, 'test','test@test.no', 'test', 1);
 
 INSERT INTO utleiepakker (id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige) VALUES(1, 'Langrenn Pakka','Fantastisk bra sett for å stå på langrenn, dette er det settet vi anbefaler til alle som skal stå langrenn', 'Ski', 'Sko', 'staver', 79, 10);
 INSERT INTO utleiepakker (id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige) VALUES(2, 'Alpin Pakka','Fantastisk bra sett for å stå på alpin, dette er det settet vi anbefaler til alle som skal stå alpin', 'Ski', 'Sko', 'staver', 99, 10);

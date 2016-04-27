@@ -1,8 +1,10 @@
-import sqlite3
-from flask import g
-from app import app
-import math
 import datetime
+import math
+import sqlite3
+
+from flask import g
+
+from app import app
 
 DATABASE = 'alpin.db'
 app.config.from_object(__name__)
@@ -67,7 +69,15 @@ class dbManager:
         db = get_db()
         cur = db.execute('select * from members WHERE id =' + str(id))
         entries = cur.fetchone()
-        member = Member(entries[0], entries[1], entries[2])
+        member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
+        return member
+
+    # (id, name, email, password)
+    def getMemberFromEmail(self, email):
+        db = get_db()
+        cur = db.execute("select * from members WHERE email = '" + email + "'");
+        entries = cur.fetchone()
+        member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
         return member
 
     def getKvitteringHeiskort(self, id):
@@ -88,13 +98,62 @@ class dbManager:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
         return receiptUtleiepakker
 
-
-
-
     def registerNewMember(self, member):
-        print(member.name)
-        print(member.email)
-        print(member.password)
+        db = get_db();
+        try:
+            db.execute('INSERT INTO members (name, email, password) VALUES(?, ?, ?)',
+                       [member.name, member.email, member.password])
+            db.commit()
+            return True
+        except:
+            db.rollback()
+            return False
+
+    def registerReceiptUtleiepakker(self, receiptUtleiepakker):
+        db = get_db();
+        try:
+            db.execute(
+                    'INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (?,?,?,?,?)',
+                    [receiptUtleiepakker.owner, receiptUtleiepakker.startTime, receiptUtleiepakker.type,
+                     receiptUtleiepakker.typeMutiplier, receiptUtleiepakker.utleiepakker])
+            db.commit()
+            return True
+        except:
+            db.rollback()
+            return False
+
+    def registerKvitteringHeiskort(self, kvitteringHeiskort):
+        db = get_db();
+        try:
+            db.execute('INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (?, ?, ?)',
+                       [kvitteringHeiskort.owner, kvitteringHeiskort.startTime, kvitteringHeiskort.heiskort])
+            db.commit()
+            return True
+        except:
+            db.rollback()
+            return False
+
+    def updateMember(self, newMember):
+        db = get_db();
+        # TODO feil med try catch?
+
+        #test = "Hallo %s", member.email
+        mem = newMember
+        mem.name = "BARE TULL"
+
+        sql = 'UPDATE members SET name = "%s", email = "%s", password = "%s", paidMember = %s WHERE id=%s' % (
+        mem.name, mem.email, mem.password, str(mem.paidMember), str(mem.id));
+
+        try:
+            db.execute(sql)
+            db.commit()
+            print("OKAY, db updated with sqp: " + sql)
+            return True
+        except:
+            db.rollback()
+            print("FAILED, db did not update" + sql)
+
+            return False
 
 
 class UtleiePakke:
@@ -120,24 +179,47 @@ class UtleiePakke:
         self.childPrice = math.ceil(price / 2);
 
 
+# member = Member(entries[0], entries[1], entries[2], entries[3])
 class Member:
-    id = -1
+    id = ''
     name = ''
     email = ''
     password = ''
+    paidMember = 0;
 
-
-    def __init__(self, id, name, email, password):
+    def __init__(self, id, name, email, password, paidMember):
         self.name = name
         self.id = id
         self.email = email
         self.password = password
+        self.paidMember = paidMember
 
-    def __init__(self, name, email, password):
+    # Changes
+    """def __init__(self, name, email, password):
         self.name = name
         self.id = -2
         self.email = email
-        self.password = password
+        self.password = password"""
+
+    def get_id(self):
+        print(chr(id))
+        return chr(id)
+
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    def get_id(self):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        return self.email
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False
 
 class Heiskort:
     id = -1
@@ -195,16 +277,20 @@ class ReceiptUtleiepakker:
     outdated = True;
 
     def __init__(self, id, owner, startTime, type, typeMutiplier, utleiepakker):
+
         self.id = "R" + str(id)  # Adding an R to the receiptID so it will be unique
         self.owner = owner
         self.startTime = startTime
         self.utleiepakker = self.nameOfUtleiepakke(utleiepakker);
+        self.type = type;
+        self.typeMutiplier = typeMutiplier
 
         startTimeObj = datetime.datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
 
         # type 0 = hourly
         if (type == 0):
             self.endTime = startTimeObj + datetime.timedelta(hours=typeMutiplier)
+            print("New EndTime")
             if (self.endTime > datetime.datetime.now()):
                 self.outdated = False;
 

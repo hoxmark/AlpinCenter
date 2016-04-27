@@ -50,64 +50,36 @@
                 <p>Du er nødt til å være innlogget for å bestille en pakke. </p>
                 <p> TODO: Du er ikke innlogget </p>
 
-                <h2>Leiemulighetene dine:</h2><br>
-                <h3>Voksen</h3>
+                <h3>Voksen priser</h3>
+                <p> Du kan få 50% rabatt i handlekruven om du er barn(under 10 år)</p>
 
                 <div class="row">
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <a class="btn btn-success">
+                        <a href="/checkout/utleiepakker/{{utleiePakke.id}}/1" class="btn btn-success">
                             Per time <br>
                             {{utleiePakke.price}} NOK
 
                         </a>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <a class="btn btn-success">
+                        <a href="/checkout/utleiepakker/{{utleiePakke.id}}/2" class="btn btn-success">
                             Per dag <br>
                             {{utleiePakke.price*5}} NOK
 
                         </a>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <a class="btn btn-success">
+                        <a href="/checkout/utleiepakker/{{utleiePakke.id}}/3" class="btn btn-success">
                             Per uke <br>
                             {{utleiePakke.price*5*5}} NOK
                         </a>
                     </div>
                 </div>
-                <br>
-                <h3>Barnepris**</h3>
-                <div class="row">
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <a class="btn btn-success">
-                            Per time <br>
-                            {{utleiePakke.childPrice}} NOK
 
-                        </a>
-                    </div>
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <a class="btn btn-success">
-                            Per dag <br>
-                            {{((utleiePakke.childPrice*5))}} NOK
-
-                        </a>
-                    </div>
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <a class="btn btn-success">
-                            Per uke <br>
-                            {{(utleiePakke.childPrice*5*5)}} NOK
-                            href=""
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-</div>
-
-<div>
-    <p class="pull-right">**Barnepris er kun for de under 10 år </p>
 </div>
 
 {% endblock %}

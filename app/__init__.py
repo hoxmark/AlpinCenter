@@ -20,5 +20,8 @@ import nav
 import login
 
 # run it
+
+app.config["SECRET_KEY"] = "ITSASECRET"
+
 if __name__ == '__main__':
     app.run(debug=True)

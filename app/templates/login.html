@@ -5,8 +5,27 @@
 {% block content %}
 <h1>Login da</h1>
 
+<form action="{{ url_for('login') }}" method=post class=add- entry>
+<dl>
+    <dt>Username:
+    <dd><input type=text size=30 name="email" value="">
+
+    <dt>Pass 2
+    <dd><input name="password" type="password"> </input></dd>
+
+    <dt><input type=submit value=login>
+</dl>
+</form>
+
 
 <a href="register"> Lag en ny bruker</a>
+
+
+{% if current_user.is_authenticated %}
+  Hi {{ current_user.id }}!
+{% endif %}
+
+
 {% endblock %}
 
 
