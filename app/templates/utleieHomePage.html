@@ -14,9 +14,7 @@
             <p class="lead">Utleie</p>
             <div class="list-group">
                 {% for utleiePakke in utleiePakkene %}
-
                 <a href="utleie/{{utleiePakke.id}}" class="list-group-item">{{utleiePakke.name}}</a>
-
                 {% endfor %}
 
             </div>
@@ -55,7 +53,6 @@
             </div>
             <br>
             <div class="row">
-
                 {% for utleiePakke in utleiePakkene %}
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
@@ -65,16 +62,6 @@
                             <h4><a href="utleie/{{utleiePakke.id}}">{{utleiePakke.name}}</a>
                             </h4>
                             <p>{{utleiePakke.beskrivelse}}</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">ledige pakker: {{utleiePakke.antLedige}}</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
                         </div>
                     </div>
                 </div>

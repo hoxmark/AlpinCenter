@@ -28,13 +28,14 @@
                 <img class="img-responsive" src="{{ url_for('static',filename='photos/Pakke') }}{{utleiePakke.id}}.jpg"
                      alt="">
                 <div class="caption-full">
-                    <h4 class="pull-right">{{ utleiePakke.price }} NOK *</h4>
+                    <h4 class="pull-right"> fra {{ utleiePakke.price }} NOK *</h4>
+
                     <h4><a href="#"><h2>{{ utleiePakke.name }}</h2></a>
                     </h4>
                     <p>{{ utleiePakke.beskrivelse }}</p>
                 </div>
                 <div class="ratings">
-                    <p class="pull-right">*Per time</p>
+                    <p class="pull-right">Det er bare <strong>{{howManyLeft}}</strong> igjen</p>
                     <p>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
@@ -79,7 +80,7 @@
             </div>
         </div>
     </div>
-
+<p class="pull-right">*per time</p>
 </div>
 
 {% endblock %}

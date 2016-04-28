@@ -1,7 +1,6 @@
 import datetime
 import math
 import sqlite3
-
 from flask import g
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import app
@@ -119,6 +118,16 @@ class dbManager:
         return receiptUtleiepakker
 
 
+    def getAllReceiptFromASpesificUtleiepakker(self, id):
+        receiptUtleiepakker = []
+        db = get_db()
+        cur = db.execute('select * from receiptUtleiepakker WHERE utleiePakke=' + str(id))
+        entries = cur.fetchall()
+        for row in entries:
+            receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
+        return receiptUtleiepakker
+
+
     def registerNewMember(self, member):
         db = get_db();
         try:
@@ -207,9 +216,10 @@ class UtleiePakke:
     skiPoles = 'canine'
     price = 10
     childPrice = 5;
-    antLedige = 0;
+    ant = 0;
+    howManyLeft = 0;
 
-    def __init__(self, id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige):
+    def __init__(self, id, name, beskrivelse, ski, shoes, skiPoles, price, ant):
         self.name = name
         self.id = id
         self.beskrivelse = beskrivelse
@@ -217,7 +227,7 @@ class UtleiePakke:
         self.shoes = shoes
         self.skiPoles = skiPoles
         self.price = math.ceil(price)
-        self.antLedige = antLedige
+        self.antLedige = ant
         self.childPrice = math.ceil(price / 2);
 
 

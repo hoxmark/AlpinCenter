@@ -36,7 +36,18 @@ def utleie():
 def utleieWithPakkenummer(pakkenummer):
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
     utleiePakke = dbM.getUtleiePakkeFromDb(pakkenummer);
-    return render_template('utleie.html', utleiePakke=utleiePakke, utleiePakkene=utleiePakkene)
+
+    #calculating how many is left
+    howManyLeft =0;
+    allReceipts = dbM.getAllReceiptFromASpesificUtleiepakker(pakkenummer)
+    amountRentedOutAtTheMoment = 0;
+    for i in allReceipts:
+        print(i.outdated)
+        if (not i.outdated):
+            amountRentedOutAtTheMoment += 1
+    howManyLeft = (utleiePakke.antLedige - amountRentedOutAtTheMoment);
+
+    return render_template('utleie.html', utleiePakke=utleiePakke, utleiePakkene=utleiePakkene, howManyLeft=howManyLeft)
 
 #About page.
 @app.route('/about')
@@ -83,23 +94,17 @@ def updateMember():
     return render_template('updateMember.html', member=member)
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate():
-
-        member = Member(-3, form.name.data, form.email.data, form.password.data, 0)
-        member.set_password(form.password.data)
-        if(dbM.registerNewMember(member)):
-
-            return render_template('login.html', email=member.email)
-    return render_template('newUser.html', form=form)
-
-
-
+#Checkout for utleiepakker
 @app.route('/checkout/<type>/<number>/<multiply>', methods=['GET', 'POST'])
-@login_required
 def checkout(type, number, multiply):
+    try:
+        memberEmail = session["user_id"]
+        member = dbM.getMemberFromEmail(memberEmail)
+
+    except:
+        return redirect('login')
+
+
     times = 1
     if (multiply=="3"):
         times = 25
@@ -112,8 +117,6 @@ def checkout(type, number, multiply):
         times = 1
 
 
-    memberEmail = session["user_id"]
-    member = dbM.getMemberFromEmail(memberEmail)
 
     if request.method == 'GET':
         if (type == 'utleiepakker'):
@@ -140,10 +143,14 @@ def checkout(type, number, multiply):
         dbM.registerReceiptUtleiepakker(receiptUtleiepakke)
         return redirect('minSide')
 
-
+#Checkout for heiskort
 @app.route('/checkout/<type>/<number>', methods=['GET','POST'])
-@login_required
 def checkoutHeiskort(type, number):
+    try:
+        memberEmail = session["user_id"]
+    except:
+        return redirect('login')
+
     card = dbM.getHeiskortDB(number)
     if request.method == 'GET':
         return render_template('checkout.html', card=card, type='heiskort', number=number)
@@ -173,16 +180,16 @@ def validateCode():
         return jsonify(result="Ok")
     else:
         return jsonify(result="Feil")
+
+
 #####################
-#Login              #
+#USER VIEWS/Auth    #
 #####################
 
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect('/')
-
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -203,4 +210,16 @@ def login():
     else :
         return render_template('login.html')
 
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+
+        member = Member(-3, form.name.data, form.email.data, form.password.data, 0)
+        member.set_password(form.password.data)
+        if(dbM.registerNewMember(member)):
+
+            return render_template('login.html', email=member.email)
+    return render_template('newUser.html', form=form)
 
