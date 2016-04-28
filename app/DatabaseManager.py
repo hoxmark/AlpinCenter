@@ -98,6 +98,16 @@ class dbManager:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
         return receiptUtleiepakker
 
+    def getReceiptUtleiepakkerOfKind(self, id):
+        receiptUtleiepakker = []
+        db = get_db()
+        cur = db.execute('select * from receiptUtleiepakker WHERE type=' + str(id))
+        entries = cur.fetchall()
+        for row in entries:
+            receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
+        return receiptUtleiepakker
+
+
     def registerNewMember(self, member):
         db = get_db();
         try:
@@ -115,7 +125,7 @@ class dbManager:
             db.execute(
                     'INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (?,?,?,?,?)',
                     [receiptUtleiepakker.owner, receiptUtleiepakker.startTime, receiptUtleiepakker.type,
-                     receiptUtleiepakker.typeMutiplier, receiptUtleiepakker.utleiepakker])
+                     receiptUtleiepakker.typeMutiplier, receiptUtleiepakker.utleiepakkerNumber])
             db.commit()
             return True
         except:
@@ -154,6 +164,21 @@ class dbManager:
             print("FAILED, db did not update" + sql)
 
             return False
+
+    #TODO Doublecheck if this works
+    def calculateAmountOfUtleiepakker(self, utleiepakkeid):
+        receiptUtleiepakke = self.getReceiptUtleiepakkerOfKind(utleiepakkeid)
+        print(len(receiptUtleiepakke))
+        amountInUse = 0;
+        for rec in receiptUtleiepakke:
+            print(rec.outdated)
+            if (rec.outdated):
+                print("true")
+            else:
+                amountInUse += 1;
+
+        return amountInUse
+
 
 
 class UtleiePakke:
@@ -275,13 +300,15 @@ class ReceiptUtleiepakker:
     type = -1;
     typeMutiplier = -1;
     outdated = True;
+    utleiepakkerNumber = 0
 
     def __init__(self, id, owner, startTime, type, typeMutiplier, utleiepakker):
-
+        self.utleiepakkerNumber = utleiepakker
         self.id = "R" + str(id)  # Adding an R to the receiptID so it will be unique
         self.owner = owner
         self.startTime = startTime
         self.utleiepakker = self.nameOfUtleiepakke(utleiepakker);
+        print("VERDIEN TIL SELF UTLEIE ER NA : "+self.utleiepakker)
         self.type = type;
         self.typeMutiplier = typeMutiplier
 
@@ -290,7 +317,6 @@ class ReceiptUtleiepakker:
         # type 0 = hourly
         if (type == 0):
             self.endTime = startTimeObj + datetime.timedelta(hours=typeMutiplier)
-            print("New EndTime")
             if (self.endTime > datetime.datetime.now()):
                 self.outdated = False;
 
@@ -306,7 +332,6 @@ class ReceiptUtleiepakker:
             if (self.endTime > datetime.datetime.now()):
                 self.outdated = False;
 
-    # Just to save some time.
     def nameOfUtleiepakke(self, nummer):
         if nummer == 1:
             return 'Langrenn Pakka'

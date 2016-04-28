@@ -35,6 +35,11 @@ def login():
 @app.route('/utleie')
 def utleie():
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
+
+
+    left1 =  dbM.calculateAmountOfUtleiepakker(1);
+    print(left1)
+
     return render_template('utleieHomePage.html', utleiePakkene=utleiePakkene, astor=2)
 
 
@@ -143,7 +148,7 @@ def checkout(type, number, multiply):
                                                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                                 0, # TODO make this generic
                                                 int(amount),
-                                                utleiePakke)
+                                                number)
 
         dbM.registerReceiptUtleiepakker(receiptUtleiepakke)
 
