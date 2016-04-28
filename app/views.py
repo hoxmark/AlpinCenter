@@ -46,7 +46,6 @@ def utleie():
 @app.route('/utleie/<pakkenummer>')
 def utleieWithPakkenummer(pakkenummer):
     print(pakkenummer)
-
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
     utleiePakke = dbM.getUtleiePakkeFromDb(pakkenummer);
     return render_template('utleie.html', utleiePakke=utleiePakke, utleiePakkene=utleiePakkene)
@@ -54,7 +53,10 @@ def utleieWithPakkenummer(pakkenummer):
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    months = dbM.getAllUtleiepakkerForAllYears();
+    labels = ["Januar","Februar","Mars","April","Mai","Juni","Juli","August", "September", "Oktober", "November", "Desember"]
+    values = [10,9,8,7,6,4,7,8]
+    return render_template('about.html', values=months, labels=labels)
 
 
 @app.route('/minSide')
@@ -74,21 +76,14 @@ def minSide():
 def updateMember():
     memberEmail = session["user_id"]
     member = dbM.getMemberFromEmail(memberEmail);
-
     if request.method == 'POST':
         member.email = request.form['email']
         #TODO checkbok bool TO 1, checkbox false = 0
         member.name = request.form['name']
         dbM.updateMember(member)
         return redirect('minSide')
-        #TODO send with spesific ID.
-
 
     return render_template('updateMember.html', member=member)
-
-
-
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -125,7 +120,6 @@ def checkout(type, number, multiply):
 
         if (type == 'utleiepakker'):
             utleiePakke = dbM.getUtleiePakkeFromDb(number)
-
             return render_template('checkout.html', type='utleiepakker', utleiePakke=utleiePakke, member=member, number=number, times=times, typeOfPrice=typeOfPrice )
 
         if (type == 'paidMember'):
@@ -149,7 +143,7 @@ def checkout(type, number, multiply):
                                                 0, # TODO make this generic
                                                 int(amount),
                                                 number)
-
+        
         dbM.registerReceiptUtleiepakker(receiptUtleiepakke)
 
 
