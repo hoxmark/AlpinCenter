@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="585a45b2-9bd7-49e8-83fc-3d848ea28925" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/checkout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/updateMember.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alpin.db" afterPath="$PROJECT_DIR$/alpin.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/DatabaseManager.py" afterPath="$PROJECT_DIR$/app/DatabaseManager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/login.py" afterPath="$PROJECT_DIR$/app/login.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/schema.sql" afterPath="$PROJECT_DIR$/app/schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/nav.py" afterPath="$PROJECT_DIR$/app/nav.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/login.html" afterPath="$PROJECT_DIR$/app/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/minSide.html" afterPath="$PROJECT_DIR$/app/templates/minSide.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/utleie.html" afterPath="$PROJECT_DIR$/app/templates/utleie.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/newUser.html" afterPath="$PROJECT_DIR$/app/templates/newUser.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/updateMember.html" afterPath="$PROJECT_DIR$/app/templates/updateMember.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
     </list>
     <ignored path="Alpin.iws" />
@@ -51,10 +45,10 @@
         <splitter split-orientation="vertical" split-proportion="0.55390334">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="schema.sql" pinned="false" current-in-tab="true">
+              <file leaf-file-name="schema.sql" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/schema.sql">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="2.2193878">
+                    <state vertical-scroll-proportion="2.7037036">
                       <caret line="58" column="68" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
                       <folding />
                     </state>
@@ -64,18 +58,18 @@
               <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/templates/login.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="-10.625">
-                      <caret line="17" column="7" selection-start-line="6" selection-start-column="0" selection-end-line="17" selection-end-column="7" />
+                    <state vertical-scroll-proportion="-10.208333">
+                      <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="minSide.html" pinned="false" current-in-tab="false">
+              <file leaf-file-name="minSide.html" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/templates/minSide.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="-4.375">
-                      <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+                    <state vertical-scroll-proportion="0.2284264">
+                      <caret line="6" column="20" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
                       <folding />
                     </state>
                   </provider>
@@ -98,8 +92,8 @@
               <file leaf-file-name="DatabaseManager.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/DatabaseManager.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.04901961">
-                      <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+                    <state vertical-scroll-proportion="3.6885245">
+                      <caret line="75" column="40" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
                       <folding>
                         <element signature="e#0#15#0" expanded="true" />
                         <marker date="1461780789000" expanded="true" signature="996:1034" placeholder="select * fro... utleiepakker" />
@@ -129,10 +123,10 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="utleie.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="utleie.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/templates/utleie.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.4861294">
+                <state vertical-scroll-proportion="-46.875">
                   <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
                   <folding />
                 </state>
@@ -142,10 +136,42 @@
           <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.333333">
-                  <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+                <state vertical-scroll-proportion="-14.574074">
+                  <caret line="165" column="22" selection-start-line="165" selection-start-column="22" selection-end-line="165" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#86#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="newUser.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/templates/newUser.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.3178808">
+                  <caret line="16" column="28" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="updateMember.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/templates/updateMember.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-3.75">
+                  <caret line="6" column="19" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="nav.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/nav.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-9.444445">
+                  <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+                  <folding>
+                    <element signature="e#0#25#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -183,21 +209,21 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/runApp.py" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
-        <option value="$PROJECT_DIR$/app/nav.py" />
         <option value="$PROJECT_DIR$/app/templates/about.html" />
         <option value="$PROJECT_DIR$/app/templates/utleieHomePage.html" />
         <option value="$PROJECT_DIR$/app/templates/formhelpers.html" />
-        <option value="$PROJECT_DIR$/app/templates/newUser.html" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
-        <option value="$PROJECT_DIR$/app/templates/updateMember.html" />
         <option value="$PROJECT_DIR$/app/schema.sql" />
         <option value="$PROJECT_DIR$/app/DatabaseManager.py" />
         <option value="$PROJECT_DIR$/app/login.py" />
-        <option value="$PROJECT_DIR$/app/templates/login.html" />
         <option value="$PROJECT_DIR$/app/templates/minSide.html" />
         <option value="$PROJECT_DIR$/app/templates/checkout.html" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/utleie.html" />
+        <option value="$PROJECT_DIR$/app/templates/updateMember.html" />
+        <option value="$PROJECT_DIR$/app/templates/login.html" />
+        <option value="$PROJECT_DIR$/app/nav.py" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/newUser.html" />
       </list>
     </option>
   </component>
@@ -616,7 +642,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968637" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20059289" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2009901" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968637" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -894,20 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/nav.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.444445">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/newUser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2247191">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/runApp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.056497175">
@@ -949,14 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/updateMember.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12899263">
-          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/login.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30612245">
@@ -965,10 +969,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.7037036">
+          <caret line="58" column="68" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/DatabaseManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04901961">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state vertical-scroll-proportion="3.6885245">
+          <caret line="75" column="40" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
             <marker date="1461780789000" expanded="true" signature="996:1034" placeholder="select * fro... utleiepakker" />
@@ -991,6 +1003,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/utleie.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-46.875">
+          <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/checkout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="30.625">
@@ -999,44 +1019,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/nav.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.444445">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.333333">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+        <state vertical-scroll-proportion="-14.574074">
+          <caret line="165" column="22" selection-start-line="165" selection-start-column="22" selection-end-line="165" selection-end-column="22" />
           <folding>
             <element signature="e#0#86#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/minSide.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.625">
-          <caret line="17" column="7" selection-start-line="6" selection-start-column="0" selection-end-line="17" selection-end-column="7" />
+        <state vertical-scroll-proportion="-10.208333">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/schema.sql">
+    <entry file="file://$PROJECT_DIR$/app/templates/minSide.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2193878">
-          <caret line="58" column="68" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.2284264">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/utleie.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/updateMember.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4861294">
-          <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+        <state vertical-scroll-proportion="-3.75">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/newUser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3178808">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>

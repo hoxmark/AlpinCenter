@@ -3,25 +3,30 @@
 
 
 {% block content %}
-<h1>Oppdater medlemskapet, navn eller passord</h1>
 
-<form action="{{ url_for('updateMember', memId=member.id) }}" method=post class=add- entry>
-    <dl>
-        <dt>Navn:
-        <dd><input type=text size=30 name="name" value="{{member.name}}">
+<div class="col-lg-12 text-center">
 
-        <dt>epost:
-        <dd><input type=text size=30 name="email" value="{{member.email}}">
+    <h1>Oppdater medlemskapet, navn eller passord</h1>
 
-        <dt>Password?
-        <dd><input name="password" type="password"> </input></dd>
+    <form action="{{ url_for('updateMember', memId=member.id) }}" method=post class=add- entry>
+        <dl>
+            <dt>Navn:
+            <dd><input type=text size=30 name="name" value="{{member.name}}">
 
-        <dt>medlemskap?</dt>
-        <dd><input name="password" type="checkbox"> </input></dd>
+            <dt>epost:
+            <dd><input type=text size=30 name="email" value="{{member.email}}">
 
-        <dt><input type=submit value=login>
-    </dl>
-</form>
+            <dt>Password?
+            <dd><input name="password" type="password"> </input></dd>
+
+            <dt>medlemskap?</dt>
+            <dd><input name="password" type="checkbox"> </input></dd>
+
+            <dt><input type=submit value=login>
+        </dl>
+    </form>
+
+</div>
 
 
 {% endblock %}

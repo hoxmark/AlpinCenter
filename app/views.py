@@ -3,7 +3,7 @@ import datetime
 from DatabaseManager import dbM, Member, UtleiePakke, ReceiptUtleiepakker
 from app import app
 from login import RegistrationForm, LoginForm
-from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in
+from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in, logout_user
 
 
 # Routes
@@ -75,7 +75,7 @@ def updateMember():
         #TODO checkbok bool TO 1, checkbox false = 0
         member.name = request.form['name']
         dbM.updateMember(member)
-        return render_template('minSide.html', member=member)
+        return redirect('minSide')
         #TODO send with spesific ID.
 
 
@@ -94,7 +94,9 @@ def register():
         return render_template('login.html', email=member.email)
     return render_template('newUser.html', form=form)
 
+
 @app.route('/checkout/<type>/<number>/<multiply>', methods=['GET', 'POST'])
+@login_required
 def checkout(type, number, multiply):
     times = 1
     print("m"+multiply)
@@ -147,7 +149,7 @@ def checkout(type, number, multiply):
 
 
 
-        return render_template('minSide.html', member=member)
+        return redirect('minSide')
 
 @app.route('/validateCode')
 def validateCode():
@@ -156,3 +158,9 @@ def validateCode():
         return jsonify(result="Ok")
     else:
         return jsonify(result="Feil")
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
