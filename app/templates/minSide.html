@@ -12,11 +12,7 @@
     <p class="lead">Du er betalt medlem av denne Alpin klubben</p>
 
     {% endif %}
-    ^
-    TODO: Does this work?
     <a href="{{ url_for('updateMember', memId=member.id) }}" >Oppdater personalia her</a>
-
-
 
 
 </div>
@@ -27,6 +23,7 @@
         <div class="col-lg-12 text-center">
 
             <h2>Aktive kjøp</h2>
+
 
             {% for kh in listOfRecipts %}
             {% if kh.outdated %}
@@ -59,6 +56,7 @@
                     <p class="lead">kjøpt: {{kh.startTime}}</p>
                     <p class="lead">Utgår: {{kh.endTime}}</p>
                     <p class="lead"> {{kh.utleiepakker}}</p>
+                    <p class="lead"> {{kh.lable}}</p>
 
                     <p class="lead">old: {{kh.outdated}}</p>
                 </div>

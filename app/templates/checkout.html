@@ -7,10 +7,11 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-
             <h1>Handlekurv</h1>
 
-            <form action="{{ url_for('checkout', type=type, number=number, multiply=-1) }}" method=post
+            {% if type == 'utleiepakker' %}
+
+            <form action="{{ url_for('checkout', type=type, number=number, multiply=multiply) }}" method=post
                   class=add- entry>
                 <dl> Fyll inn kupong-kode for å få 10% avslag, denne koden kan du få fra søsken.
                     <br> De finner den på siden egen "minside" etter at de er logget inn.
@@ -23,7 +24,7 @@
 
                     <h2>Varen du ønsker å kjøpe</h2><br>
 
-                    {% if type == 'utleiepakker' %}
+
                     <p class="lead">Name: {{utleiePakke.name}} </p>
                     <p class="lead">{{typeOfPrice}} i NOK:{{utleiePakke.price*times}} </p>
                     <input type="hidden" id="price" name="price" value="{{utleiePakke.price*times}}"/>
@@ -41,19 +42,70 @@
 
                     <select id="child" name="child">
                         <option value="False">Voksen</option>
-                        <p class="lead">Total pris: </p>
                         <option value="True">Barn</option>
-                        <br>
                     </select>
+                    <br>
+                    <p class="lead">Total pris: </p>
+
 
                     <p class="lead" id="total">{{utleiePakke.price*times}}</p>
-
-                    {% endif %}
-
                     <dt><input type=submit value=Kjøp>
 
                 </dl>
             </form>
+                    {% endif %}
+
+
+
+
+            {% if type == 'heiskort' %}
+
+            <form action="{{ url_for('checkoutHeiskort', type='heiskort', number=card.id) }}" method=post
+                  class=add- entry>
+                <dl> Fyll inn kupong-kode for å få 10% avslag, denne koden kan du få fra søsken.
+                    <br> De finner den på siden egen "minside" etter at de er logget inn.
+                    <br>
+                    <br>
+                    <input name="code" type="text" id="code">
+                    <p><a href=# id=calculate>Sjekk om koden er korrekt</a>
+
+                    <p name="result" id="result"></p>
+                    <input type="hidden" id="price" name="price" value="{{card.price}}"/>
+
+
+                    <h2>Varen du ønsker å kjøpe</h2><br>
+
+
+                    <p class="lead">antall dager: <select id="amount" name="amount">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select></p>
+
+
+                   <p class="lead">Alder: <select id="child" name="child">
+                        <option value="False">Voksen</option>
+                        <option value="True">Barn</option>
+                        <br>
+                    </select></p>
+
+                    <p class="lead">Total pris i NOK: </p>
+
+
+                    <p class="lead" id="total">{{card.price}}</p>
+                    <dt><input type=submit value=Kjøp>
+
+                </dl>
+            </form>
+
+            {% endif %}
+
+
         </div>
     </div>
 </div>

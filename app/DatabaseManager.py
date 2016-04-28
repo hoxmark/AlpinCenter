@@ -54,6 +54,13 @@ class dbManager:
         print ('hentet ut: ' + utleiePakke.name)
         return utleiePakke
 
+    def getHeiskortDB(self, heisKortid):
+        db = get_db()
+        cur = db.execute('select * from heisKort WHERE id = ' + str(heisKortid))
+        entries = cur.fetchone()
+        heiskort = Heiskort(entries[0], entries[1], entries[2])
+        return heiskort
+
     def getUtleiePakkeneFromDb(self):
         utleiePakkene = []
         db = get_db()
@@ -272,6 +279,7 @@ class KvitteringHeiskort:
     endTime = 'time'
     heiskort = object;
     outdated = True;
+    lable = "Heiskort"
 
     # datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     def __init__(self, id, owner, startTime, heiskort):

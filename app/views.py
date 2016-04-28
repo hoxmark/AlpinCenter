@@ -1,6 +1,6 @@
 from flask import render_template, request, jsonify, flash, url_for, redirect, session
 import datetime
-from DatabaseManager import dbM, Member, UtleiePakke, ReceiptUtleiepakker
+from DatabaseManager import dbM, Member, UtleiePakke, ReceiptUtleiepakker, KvitteringHeiskort
 from app import app
 from login import RegistrationForm, LoginForm
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in, logout_user
@@ -18,7 +18,6 @@ def login():
         pw = request.form['password']
 
         user = dbM.getMemberFromEmail(email)
-        print("name: "+user.name)
         if (user.password == pw):
             print("Korrekt PW")
 
@@ -28,24 +27,29 @@ def login():
             return redirect('minSide')
 
     else :
-        print("GETter login")
         return render_template('login.html')
 
+
+
+
+@app.route('/heiskort')
+def heiskort():
+    allCards = []
+    for i in range(0,3):
+        allCards.append(dbM.getHeiskortDB(i))
+    return render_template('heiskort.html', allCards=allCards)
 
 @app.route('/utleie')
 def utleie():
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
 
-
     left1 =  dbM.calculateAmountOfUtleiepakker(1);
-    print(left1)
 
     return render_template('utleieHomePage.html', utleiePakkene=utleiePakkene, astor=2)
 
 
 @app.route('/utleie/<pakkenummer>')
 def utleieWithPakkenummer(pakkenummer):
-    print(pakkenummer)
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
     utleiePakke = dbM.getUtleiePakkeFromDb(pakkenummer);
     return render_template('utleie.html', utleiePakke=utleiePakke, utleiePakkene=utleiePakkene)
@@ -55,9 +59,7 @@ def utleieWithPakkenummer(pakkenummer):
 def about():
     months = dbM.getAllUtleiepakkerForAllYears();
     labels = ["Januar","Februar","Mars","April","Mai","Juni","Juli","August", "September", "Oktober", "November", "Desember"]
-    values = [10,9,8,7,6,4,7,8]
     return render_template('about.html', values=months, labels=labels)
-
 
 @app.route('/minSide')
 @login_required
@@ -68,7 +70,6 @@ def minSide():
     listOfRecipts.sort(key=lambda r: r.startTime)
 
     return render_template('minSide.html', member=member, listOfRecipts=listOfRecipts)
-
 
 
 @app.route('/updateMember', methods=['GET', 'POST'])
@@ -85,6 +86,7 @@ def updateMember():
 
     return render_template('updateMember.html', member=member)
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm(request.form)
@@ -95,11 +97,11 @@ def register():
     return render_template('newUser.html', form=form)
 
 
+
 @app.route('/checkout/<type>/<number>/<multiply>', methods=['GET', 'POST'])
 @login_required
 def checkout(type, number, multiply):
     times = 1
-    print("m"+multiply)
     if (multiply=="3"):
         times = 25
         typeOfPrice = 'ukepris'
@@ -115,12 +117,9 @@ def checkout(type, number, multiply):
     member = dbM.getMemberFromEmail(memberEmail)
 
     if request.method == 'GET':
-        if (type=='heisKort'):
-            return '' #TODO make this sql
-
         if (type == 'utleiepakker'):
             utleiePakke = dbM.getUtleiePakkeFromDb(number)
-            return render_template('checkout.html', type='utleiepakker', utleiePakke=utleiePakke, member=member, number=number, times=times, typeOfPrice=typeOfPrice )
+            return render_template('checkout.html', type='utleiepakker', utleiePakke=utleiePakke, member=member, number=number, times=times, typeOfPrice=typeOfPrice, multiply=multiply)
 
         if (type == 'paidMember'):
             return render_template('checkout.html', paidMember=True)
@@ -132,24 +131,47 @@ def checkout(type, number, multiply):
         print(request.form['code'])
         print(request.form['price'])
 
+
         #def __init__(self, id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige):
-
-        utleiePakke = dbM.getUtleiePakkeFromDb(number)
-
+        #utleiePakke = dbM.getUtleiePakkeFromDb(number)
         #def __init__(self, id, owner, startTime, type, typeMutiplier, utleiepakker):
         receiptUtleiepakke = ReceiptUtleiepakker(-2,
                                                 member.id,
                                                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                                0, # TODO make this generic
+                                                int(multiply)-1, # TODO make this generic
                                                 int(amount),
                                                 number)
 
         dbM.registerReceiptUtleiepakker(receiptUtleiepakke)
-
-
-
         return redirect('minSide')
 
+
+@app.route('/checkout/<type>/<number>', methods=['GET','POST'])
+@login_required
+def checkoutHeiskort(type, number):
+    card = dbM.getHeiskortDB(number)
+    if request.method == 'GET':
+        return render_template('checkout.html', card=card, type='heiskort', number=number)
+
+    if request.method == 'POST':
+        print("OK HER")
+        memberEmail = session["user_id"]
+        member = dbM.getMemberFromEmail(memberEmail)
+
+        # def __init__(self, id, owner, startTime, heiskort):
+        kvitteringHeiskort = KvitteringHeiskort(0,
+                                                member.id,
+                                                datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                                card.id)
+
+        dbM.registerKvitteringHeiskort(kvitteringHeiskort)
+
+        return redirect("minSide")
+
+
+
+
+#Her kunne vi ogsaa lagt til etternavn, saa han hadde sjekket opp mot baade etternavnet til broren eller soesteren. Men det faar bli i 2.0
 @app.route('/validateCode')
 def validateCode():
     code = request.args.get('a', 1, type=str)
@@ -163,3 +185,5 @@ def validateCode():
 def logout():
     logout_user()
     return redirect('/')
+
+

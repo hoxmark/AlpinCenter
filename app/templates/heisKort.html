@@ -1,0 +1,39 @@
+{% extends "./base.html" %}
+{% block title %}Heiskort{% endblock %}
+
+
+{% block content %}
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="well">
+        <p>Du er nødt til å være innlogget for å bestille en heiskort. </p>
+        <h3>Voksen priser</h3>
+        <p> Du kan få 50% rabatt i handlekruven om du er barn(under 10 år)</p>
+
+        <div class="row">
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <a href="/checkout/heiskort/0" class="btn btn-success">
+                    Per dag <br>
+                    {{allCards[0].price}} NOK
+                </a>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <a href="/checkout/heiskort/1" class="btn btn-success">
+                    Per uke <br>
+                    {{allCards[1].price}} NOK
+                </a>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <a href="/checkout/heiskort/2" class="btn btn-success">
+                    Per sesong <br>
+                    {{allCards[2].price}} NOK
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
