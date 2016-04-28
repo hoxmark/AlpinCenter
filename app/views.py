@@ -143,7 +143,7 @@ def checkout(type, number, multiply):
                                                 0, # TODO make this generic
                                                 int(amount),
                                                 number)
-        
+
         dbM.registerReceiptUtleiepakker(receiptUtleiepakke)
 
 
