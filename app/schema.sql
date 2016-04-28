@@ -53,7 +53,7 @@ CREATE TABLE utleiepakker (
 
 
 
-INSERT INTO members (id, name, email, password, paidMember) VALUES(0, 'Ola Normann', 'ola@norman.no', '123', 1 );
+INSERT INTO members (id, name, email, password, paidMember) VALUES(0, 'Bjorn Hoxmark', 'hoxmark@me.com', 'pbkdf2:sha1:1000$RdQZfJr7$8f5eee349005d01c67c47b68997f8267317dbd52', 1 );
 INSERT INTO members (id, name, email, password, paidMember) VALUES(1, 'Kari Normann','Kari@norman.no', '123', 0);
 INSERT INTO members (id, name, email, password, paidMember) VALUES(2, 'McGlagen Normann','McGlagen@norman.no', '123', 1);
 INSERT INTO members (id, name, email, password, paidMember) VALUES(3, 'test','test@test.no', 'test', 1);

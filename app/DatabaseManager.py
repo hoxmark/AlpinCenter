@@ -3,8 +3,9 @@ import math
 import sqlite3
 
 from flask import g
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from app import app
+
 
 DATABASE = 'alpin.db'
 app.config.from_object(__name__)
@@ -82,10 +83,13 @@ class dbManager:
     # (id, name, email, password)
     def getMemberFromEmail(self, email):
         db = get_db()
-        cur = db.execute("select * from members WHERE email = '" + email + "'");
-        entries = cur.fetchone()
-        member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
-        return member
+        try:
+            cur = db.execute("select * from members WHERE email = '" + email + "'");
+            entries = cur.fetchone()
+            member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
+            return member
+        except:
+            return None
 
     def getKvitteringHeiskort(self, id):
         kvitteringHeiskort = []
@@ -118,8 +122,8 @@ class dbManager:
     def registerNewMember(self, member):
         db = get_db();
         try:
-            db.execute('INSERT INTO members (name, email, password) VALUES(?, ?, ?)',
-                       [member.name, member.email, member.password])
+            db.execute('INSERT INTO members (name, email, password, paidMember ) VALUES(?, ?, ?,?)',
+                       [member.name, member.email, member.password, member.paidMember])
             db.commit()
             return True
         except:
@@ -154,9 +158,7 @@ class dbManager:
         db = get_db();
         # TODO feil med try catch?
 
-        #test = "Hallo %s", member.email
         mem = newMember
-        mem.name = "BARE TULL"
 
         sql = 'UPDATE members SET name = "%s", email = "%s", password = "%s", paidMember = %s WHERE id=%s' % (
         mem.name, mem.email, mem.password, str(mem.paidMember), str(mem.id));
@@ -227,12 +229,24 @@ class Member:
     password = ''
     paidMember = 0;
 
-    def __init__(self, id, name, email, password, paidMember):
+    def __init__(self, id, name, email, pwIn, paidMember):
         self.name = name
         self.id = id
         self.email = email
-        self.password = password
         self.paidMember = paidMember
+        self.password = pwIn
+
+
+
+    def set_password(self, pwIn):
+        self.password = generate_password_hash(pwIn)
+        print("SETTER PASSORD")
+
+    def check_password(self, pwIn):
+        value=check_password_hash(self.password, pwIn)
+        print("check_password:")
+        print(value)
+        return value
 
     # Changes
     """def __init__(self, name, email, password):

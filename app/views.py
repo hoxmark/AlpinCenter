@@ -5,33 +5,17 @@ from app import app
 from login import RegistrationForm, LoginForm
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in, logout_user
 
+# Routes All routes is in this file.
 
-# Routes
+
+
+
+#Home/Index
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        pw = request.form['password']
-
-        user = dbM.getMemberFromEmail(email)
-        if (user.password == pw):
-            print("Korrekt PW")
-
-            if (login_user(user)):
-                flash('Logged in successfully.')
-
-            return redirect('minSide')
-
-    else :
-        return render_template('login.html')
-
-
-
-
+#page to order heiskort
 @app.route('/heiskort')
 def heiskort():
     allCards = []
@@ -39,28 +23,29 @@ def heiskort():
         allCards.append(dbM.getHeiskortDB(i))
     return render_template('heiskort.html', allCards=allCards)
 
+#Overviewpage to order utleie utstyr
 @app.route('/utleie')
 def utleie():
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
-
     left1 =  dbM.calculateAmountOfUtleiepakker(1);
-
     return render_template('utleieHomePage.html', utleiePakkene=utleiePakkene, astor=2)
 
 
+#spesific page to utleie utstyr
 @app.route('/utleie/<pakkenummer>')
 def utleieWithPakkenummer(pakkenummer):
     utleiePakkene = dbM.getUtleiePakkeneFromDb();
     utleiePakke = dbM.getUtleiePakkeFromDb(pakkenummer);
     return render_template('utleie.html', utleiePakke=utleiePakke, utleiePakkene=utleiePakkene)
 
-
+#About page.
 @app.route('/about')
 def about():
     months = dbM.getAllUtleiepakkerForAllYears();
     labels = ["Januar","Februar","Mars","April","Mai","Juni","Juli","August", "September", "Oktober", "November", "Desember"]
     return render_template('about.html', values=months, labels=labels)
 
+#my page,
 @app.route('/minSide')
 @login_required
 def minSide():
@@ -68,10 +53,9 @@ def minSide():
     member = dbM.getMemberFromEmail(memberEmail);
     listOfRecipts = dbM.getKvitteringHeiskort(member.id) + dbM.getReceiptUtleiepakker(member.id);
     listOfRecipts.sort(key=lambda r: r.startTime)
-
     return render_template('minSide.html', member=member, listOfRecipts=listOfRecipts)
 
-
+#update Member page
 @app.route('/updateMember', methods=['GET', 'POST'])
 @login_required
 def updateMember():
@@ -81,6 +65,18 @@ def updateMember():
         member.email = request.form['email']
         #TODO checkbok bool TO 1, checkbox false = 0
         member.name = request.form['name']
+        print("HER")
+        if(request.form['checkbox']=='on'):
+            member.paidMember = 1;
+            print(member.paidMember)
+        else:
+            member.paidMember = 0;
+            print(member.paidMember)
+        if request.form['password']=="":
+            print("pw blanc")
+        else:
+            member.set_password(request.form['password'])
+
         dbM.updateMember(member)
         return redirect('minSide')
 
@@ -91,9 +87,12 @@ def updateMember():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
+
         member = Member(-3, form.name.data, form.email.data, form.password.data, 0)
-        dbM.registerNewMember(member)
-        return render_template('login.html', email=member.email)
+        member.set_password(form.password.data)
+        if(dbM.registerNewMember(member)):
+
+            return render_template('login.html', email=member.email)
     return render_template('newUser.html', form=form)
 
 
@@ -131,10 +130,6 @@ def checkout(type, number, multiply):
         print(request.form['code'])
         print(request.form['price'])
 
-
-        #def __init__(self, id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige):
-        #utleiePakke = dbM.getUtleiePakkeFromDb(number)
-        #def __init__(self, id, owner, startTime, type, typeMutiplier, utleiepakker):
         receiptUtleiepakke = ReceiptUtleiepakker(-2,
                                                 member.id,
                                                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -154,7 +149,6 @@ def checkoutHeiskort(type, number):
         return render_template('checkout.html', card=card, type='heiskort', number=number)
 
     if request.method == 'POST':
-        print("OK HER")
         memberEmail = session["user_id"]
         member = dbM.getMemberFromEmail(memberEmail)
 
@@ -179,11 +173,34 @@ def validateCode():
         return jsonify(result="Ok")
     else:
         return jsonify(result="Feil")
-
+#####################
+#Login              #
+#####################
 
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect('/')
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+    if request.method == 'POST':
+        email = request.form['email']
+        pw = request.form['password']
+        user = dbM.getMemberFromEmail(email)
+
+        if (user.check_password(pw)):
+            if (login_user(user)):
+                flash('Logged in successfully.')
+            return redirect('minSide')
+        else:
+            print("feil med passord")
+        redirect('login')
+
+    else :
+        return render_template('login.html')
 
 
