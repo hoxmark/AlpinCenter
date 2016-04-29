@@ -19,6 +19,7 @@ import nav
 #gjor alt med login
 import login
 
+#This is not a very secure key. This will need to be changed to something "random"
 app.config["SECRET_KEY"] = "ITSASECRET"
 
 if __name__ == '__main__':

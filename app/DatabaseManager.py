@@ -1,7 +1,7 @@
 import datetime
 import math
 import sqlite3
-from flask import g
+from flask import g, escape
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import app
 
@@ -40,7 +40,7 @@ class dbManager:
 
     def getUtleiePakkeFromDb(self, pakkenummer):
         db = get_db()
-        cur = db.execute('select * from utleiepakker WHERE id = ' + pakkenummer)
+        cur = db.execute('select * from utleiepakker WHERE id = ' + escape(pakkenummer))
         entries = cur.fetchone()
         utleiePakke = UtleiePakke(entries[0], entries[1], entries[2], entries[3], entries[4], entries[5], entries[6],
                                   entries[7])
@@ -48,7 +48,7 @@ class dbManager:
 
     def getHeiskortDB(self, heisKortid):
         db = get_db()
-        cur = db.execute('select * from heisKort WHERE id = ' + str(heisKortid))
+        cur = db.execute('select * from heisKort WHERE id = ' + escape(str(heisKortid)))
         entries = cur.fetchone()
         heiskort = Heiskort(entries[0], entries[1], entries[2])
         return heiskort
@@ -64,7 +64,7 @@ class dbManager:
 
     def getMember(self, id):
         db = get_db()
-        cur = db.execute('select * from members WHERE id =' + str(id))
+        cur = db.execute('select * from members WHERE id =' + escape(str(id)))
         entries = cur.fetchone()
         member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
         return member
@@ -73,7 +73,7 @@ class dbManager:
     def getMemberFromEmail(self, email):
         db = get_db()
         try:
-            cur = db.execute("select * from members WHERE email = '" + email + "'");
+            cur = db.execute("select * from members WHERE email = '%s'" % email);
             entries = cur.fetchone()
             member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
             return member
@@ -83,7 +83,7 @@ class dbManager:
     def getKvitteringHeiskort(self, id):
         kvitteringHeiskort = []
         db = get_db()
-        cur = db.execute('select * from kvitteringHeiskort WHERE owner=' + str(id))
+        cur = db.execute('select * from kvitteringHeiskort WHERE owner=' + escape(str(id)))
         entries = cur.fetchall()
         for row in entries:
             kvitteringHeiskort.append(KvitteringHeiskort(row[0], row[1], row[2], row[3], row[4]))
@@ -92,7 +92,7 @@ class dbManager:
     def getReceiptUtleiepakker(self, id):
         receiptUtleiepakker = []
         db = get_db()
-        cur = db.execute('select * from receiptUtleiepakker WHERE owner=' + str(id))
+        cur = db.execute('select * from receiptUtleiepakker WHERE owner=' + escape(str(id)))
         entries = cur.fetchall()
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
@@ -101,7 +101,7 @@ class dbManager:
     def getReceiptUtleiepakkerOfKind(self, id):
         receiptUtleiepakker = []
         db = get_db()
-        cur = db.execute('select * from receiptUtleiepakker WHERE type=' + str(id))
+        cur = db.execute('select * from receiptUtleiepakker WHERE type=' + escape(str(id)))
         entries = cur.fetchall()
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
@@ -111,7 +111,7 @@ class dbManager:
     def getAllReceiptFromASpesificUtleiepakker(self, id):
         receiptUtleiepakker = []
         db = get_db()
-        cur = db.execute('select * from receiptUtleiepakker WHERE utleiePakke=' + str(id))
+        cur = db.execute('select * from receiptUtleiepakker WHERE utleiePakke=' + escape(str(id)))
         entries = cur.fetchall()
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
@@ -158,7 +158,7 @@ class dbManager:
         mem = newMember
 
         sql = 'UPDATE members SET name = "%s", email = "%s", password = "%s", paidMember = %s WHERE id=%s' % (
-        mem.name, mem.email, mem.password, str(mem.paidMember), str(mem.id));
+        escape(mem.name), escape(mem.email), escape(mem.password), escape(str(mem.paidMember)), escape(str(mem.id)));
 
         try:
             db.execute(sql)
