@@ -99,19 +99,29 @@ def checkoutHeiskort(type, number):
     except:
         return redirect('login')
 
+
+    typeOfCard = "dager"
+    if number=="1":
+        typeOfCard="uker"
+    if number=="2":
+        typeOfCard="sesonger"
+
     card = dbM.getHeiskortDB(number)
     if request.method == 'GET':
-        return render_template('checkout.html', card=card, type='heiskort', number=number)
+        return render_template('checkout.html', card=card, type='heiskort', number=number, typeOfCard=typeOfCard)
 
     if request.method == 'POST':
         memberEmail = session["user_id"]
+        amount= request.form['amount'];
+
         member = dbM.getMemberFromEmail(memberEmail)
 
         # def __init__(self, id, owner, startTime, heiskort):
         kvitteringHeiskort = KvitteringHeiskort(0,
                                                 member.id,
                                                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                                card.id)
+                                                card.id,
+                                                int(amount))
 
         dbM.registerKvitteringHeiskort(kvitteringHeiskort)
 

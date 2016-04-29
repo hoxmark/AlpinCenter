@@ -86,7 +86,7 @@ class dbManager:
         cur = db.execute('select * from kvitteringHeiskort WHERE owner=' + str(id))
         entries = cur.fetchall()
         for row in entries:
-            kvitteringHeiskort.append(KvitteringHeiskort(row[0], row[1], row[2], row[3]))
+            kvitteringHeiskort.append(KvitteringHeiskort(row[0], row[1], row[2], row[3], row[4]))
         return kvitteringHeiskort
 
     def getReceiptUtleiepakker(self, id):
@@ -145,8 +145,8 @@ class dbManager:
     def registerKvitteringHeiskort(self, kvitteringHeiskort):
         db = get_db();
         try:
-            db.execute('INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (?, ?, ?)',
-                       [kvitteringHeiskort.owner, kvitteringHeiskort.startTime, kvitteringHeiskort.heiskort])
+            db.execute('INSERT INTO kvitteringHeiskort (owner, startTime, heikort, amount) VALUES (?, ?, ?, ?)',
+                       [kvitteringHeiskort.owner, kvitteringHeiskort.startTime, kvitteringHeiskort.heiskort, kvitteringHeiskort.amount])
             db.commit()
             return True
         except:
@@ -277,29 +277,31 @@ class KvitteringHeiskort:
     heiskort = object;
     outdated = True;
     lable = "Heiskort"
+    amount = 1
 
     # datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    def __init__(self, id, owner, startTime, heiskort):
+    def __init__(self, id, owner, startTime, heiskort, amount):
         self.id = "L" + str(id)  # Adding an L to the receiptID so it will be unique
         self.owner = owner
         self.startTime = startTime
         self.heiskort = heiskort
+        self.amount = int(amount)
 
         # now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         startTimeObj = datetime.datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
 
         if (heiskort == 0):
-            self.endTime = startTimeObj + datetime.timedelta(days=1)
+            self.endTime = startTimeObj + datetime.timedelta(days=(1*self.amount))
             if (self.endTime > datetime.datetime.now()):
                 self.outdated = False;
 
         if (heiskort == 1):
-            self.endTime = startTimeObj + datetime.timedelta(days=7)
+            self.endTime = startTimeObj + datetime.timedelta(days=(7*self.amount))
             if (self.endTime > datetime.datetime.now()):
                 self.outdated = False;
 
         if (heiskort == 2):
-            self.endTime = startTimeObj + datetime.timedelta(days=60)
+            self.endTime = startTimeObj + datetime.timedelta(days=(60*self.amount))
             if (self.endTime > datetime.datetime.now()):
                 self.outdated = False;
 

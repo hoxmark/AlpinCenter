@@ -18,6 +18,7 @@ CREATE TABLE kvitteringHeiskort (
   owner id,
   startTime TEXT,
   heikort INTEGER,
+  amount INTEGER,
   FOREIGN KEY(owner) REFERENCES members(id),
   FOREIGN KEY(heikort) REFERENCES heisKort(id)
 
@@ -68,11 +69,11 @@ INSERT INTO heisKort (id, categori, price) VALUES(0,'dagkort', 200);
 INSERT INTO heisKort (id, categori, price) VALUES(1,'ukekort', 1000);
 INSERT INTO heisKort (id, categori, price) VALUES(2,'sesongkort', 5000);
 
-INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (0, '2016-04-19 19:17:22', 0);
-INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (0, '2011-11-03 18:21:26', 1);
-INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (0, '2011-11-03 18:21:26', 2);
-INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (1, '2011-11-03 18:21:26', 1);
-INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (2, '2011-11-03 18:21:26', 2);
+INSERT INTO kvitteringHeiskort (owner, startTime, heikort, amount) VALUES (0, '2016-04-19 19:17:22', 0, 1);
+INSERT INTO kvitteringHeiskort (owner, startTime, heikort, amount) VALUES (0, '2011-11-03 18:21:26', 1, 1);
+INSERT INTO kvitteringHeiskort (owner, startTime, heikort, amount) VALUES (0, '2011-11-03 18:21:26', 2, 1);
+INSERT INTO kvitteringHeiskort (owner, startTime, heikort, amount) VALUES (1, '2011-11-03 18:21:26', 1, 1);
+INSERT INTO kvitteringHeiskort (owner, startTime, heikort, amount) VALUES (2, '2011-11-03 18:21:26', 2, 1);
 
 INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (0,'2016-04-18 19:17:22', 1, 3, 1);
 INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (0,'2016-01-18 19:17:22', 1, 3, 1);

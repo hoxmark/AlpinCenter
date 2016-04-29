@@ -29,6 +29,7 @@
                     <p class="lead">{{typeOfPrice}} i NOK:{{utleiePakke.price*times}} </p>
                     <input type="hidden" id="price" name="price" value="{{utleiePakke.price*times}}"/>
 
+                    <p>Antall:
                     <select id="amount" name="amount">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -38,12 +39,13 @@
                         <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
-                    </select>
+                    </select></p>
 
+                    <p>Alder:
                     <select id="child" name="child">
                         <option value="False">Voksen</option>
                         <option value="True">Barn</option>
-                    </select>
+                    </select></p>
                     <br>
                     <p class="lead">Total pris: </p>
 
@@ -76,7 +78,7 @@
                     <h2>Varen du ønsker å kjøpe</h2><br>
 
 
-                    <p class="lead">antall dager: <select id="amount" name="amount">
+                    <p class="lead">antall {{typeOfCard}}: <select id="amount" name="amount">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
