@@ -2,7 +2,7 @@ from flask import render_template, request, jsonify, flash, url_for, redirect, s
 import datetime
 from DatabaseManager import dbM, Member, UtleiePakke, ReceiptUtleiepakker, KvitteringHeiskort
 from app import app
-from login import RegistrationForm, LoginForm
+from forms import RegistrationForm
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in, logout_user
 
 # Routes All routes is in this file.
@@ -194,7 +194,7 @@ def logout():
 def login():
     if request.method == 'POST':
         try:
-            email = request.form['email']
+            email = request.form['email'].lower()
             pw = request.form['password']
             user = dbM.getMemberFromEmail(email)
 
@@ -217,10 +217,8 @@ def login():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-
-        member = Member(-3, form.name.data, form.email.data, form.password.data, 0)
+        member = Member(-3, form.name.data, form.email.data.lower(), form.password.data, 0)
         member.set_password(form.password.data)
         if(dbM.registerNewMember(member)):
-
             return render_template('login.html', email=member.email)
-    return render_template('newUser.html', form=form)
+    return render_template('registerNewUser.html', form=form)

@@ -54,9 +54,9 @@ CREATE TABLE utleiepakker (
 
 
 INSERT INTO members (id, name, email, password, paidMember) VALUES(0, 'Bjorn Hoxmark', 'hoxmark@me.com', 'pbkdf2:sha1:1000$RdQZfJr7$8f5eee349005d01c67c47b68997f8267317dbd52', 1 );
-INSERT INTO members (id, name, email, password, paidMember) VALUES(1, 'Kari Normann','Kari@norman.no', '123', 0);
-INSERT INTO members (id, name, email, password, paidMember) VALUES(2, 'McGlagen Normann','McGlagen@norman.no', '123', 1);
-INSERT INTO members (id, name, email, password, paidMember) VALUES(3, 'test','test@test.no', 'test', 1);
+INSERT INTO members (id, name, email, password, paidMember) VALUES(1, 'Kari Normann','kari@norman.no', 'pbkdf2:sha1:1000$RdQZfJr7$8f5eee349005d01c67c47b68997f8267317dbd52', 0);
+INSERT INTO members (id, name, email, password, paidMember) VALUES(2, 'McGlagen Normann','mcglagen@norman.no', 'pbkdf2:sha1:1000$RdQZfJr7$8f5eee349005d01c67c47b68997f8267317dbd52', 1);
+INSERT INTO members (id, name, email, password, paidMember) VALUES(3, 'test','test@test.no', 'pbkdf2:sha1:1000$RdQZfJr7$8f5eee349005d01c67c47b68997f8267317dbd52', 1);
 
 INSERT INTO utleiepakker (id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige) VALUES(1, 'Langrenn Pakka','Fantastisk bra sett for å stå på langrenn, dette er det settet vi anbefaler til alle som skal stå langrenn', 'Ski', 'Sko', 'staver', 79, 10);
 INSERT INTO utleiepakker (id, name, beskrivelse, ski, shoes, skiPoles, price, antLedige) VALUES(2, 'Alpin Pakka','Fantastisk bra sett for å stå på alpin, dette er det settet vi anbefaler til alle som skal stå alpin', 'Ski', 'Sko', 'staver', 99, 10);
@@ -75,8 +75,16 @@ INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (1, '2011-11-0
 INSERT INTO kvitteringHeiskort (owner, startTime, heikort) VALUES (2, '2011-11-03 18:21:26', 2);
 
 INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (0,'2016-04-18 19:17:22', 1, 3, 1);
-INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (1,'2011-11-03 18:21:26', 1, 3, 2);
-INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (2,'2011-11-03 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (0,'2016-01-18 19:17:22', 1, 3, 1);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (0,'2016-02-18 19:17:22', 1, 3, 1);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (1,'2011-10-03 18:21:26', 1, 3, 2);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (2,'2011-10-03 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (0,'2012-11-03 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (1,'2013-11-03 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (3,'2014-11-03 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (2,'2015-12-03 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (2,'2012-12-05 18:21:26', 2, 1, 3);
+INSERT INTO receiptUtleiepakker(owner, startTime, type, typeMultiplier, utleiePakke) VALUES (2,'2010-12-03 18:21:26', 2, 1, 3);
 
 
 

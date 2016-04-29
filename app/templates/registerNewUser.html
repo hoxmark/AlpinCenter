@@ -6,15 +6,12 @@
 {% from "formhelpers.html" import render_field %}
 
 <div class="col-lg-12 text-center">
-
-
     <form method=post action="/register">
         <dl>
             {{ render_field(form.name) }}
             {{ render_field(form.email) }}
             {{ render_field(form.password) }}
             {{ render_field(form.confirm) }}
-            {{ render_field(form.accept_tos) }}
         </dl>
         <p><input type=submit value=Register></form>
 

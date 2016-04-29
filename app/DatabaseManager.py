@@ -190,7 +190,7 @@ class dbManager:
         for x in range(0,5):
             for i in self.getReceiptUtleiepakkerOfKind(x):
                 startTimeObj = datetime.datetime.strptime(i.startTime, '%Y-%m-%d %H:%M:%S')
-                months[startTimeObj.month] += 1
+                months[startTimeObj.month-1] += 1
         return months
 
 
