@@ -1,5 +1,5 @@
 # import the Flask class from the flask module
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ Bootstrap(app)
 import DatabaseManager
 
 #import router/views
-import views
+from app.views import views
 
 #gjor alt med navigatorbaren her
 import nav

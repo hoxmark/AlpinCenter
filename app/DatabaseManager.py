@@ -39,13 +39,11 @@ class dbManager:
         init_db()
 
     def getUtleiePakkeFromDb(self, pakkenummer):
-        print("getting pakkenummer from DB")
         db = get_db()
         cur = db.execute('select * from utleiepakker WHERE id = ' + pakkenummer)
         entries = cur.fetchone()
         utleiePakke = UtleiePakke(entries[0], entries[1], entries[2], entries[3], entries[4], entries[5], entries[6],
                                   entries[7])
-        print ('hentet ut: ' + utleiePakke.name)
         return utleiePakke
 
     def getHeiskortDB(self, heisKortid):
@@ -62,8 +60,6 @@ class dbManager:
         entries = cur.fetchall()
         for row in entries:
             utleiePakkene.append(UtleiePakke(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
-        print ('Innlegget ble sendt og lagret i databasen')
-        print("get utleiepakkene")
         return utleiePakkene
 
     def getMember(self, id):
@@ -175,13 +171,9 @@ class dbManager:
     #TODO Doublecheck if this works
     def calculateAmountOfUtleiepakker(self, utleiepakkeid):
         receiptUtleiepakke = self.getReceiptUtleiepakkerOfKind(utleiepakkeid)
-        print(len(receiptUtleiepakke))
         amountInUse = 0;
         for rec in receiptUtleiepakke:
-            print(rec.outdated)
-            if (rec.outdated):
-                print("true")
-            else:
+            if (not rec.outdated):
                 amountInUse += 1;
         return amountInUse
 
@@ -248,7 +240,6 @@ class Member:
             return False
 
     def get_id(self):
-        print(chr(id))
         return chr(id)
 
     def is_active(self):
@@ -295,7 +286,6 @@ class KvitteringHeiskort:
         self.heiskort = heiskort
 
         # now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         startTimeObj = datetime.datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
 
         if (heiskort == 0):
@@ -330,7 +320,6 @@ class ReceiptUtleiepakker:
         self.owner = owner
         self.startTime = startTime
         self.utleiepakker = self.nameOfUtleiepakke(utleiepakker);
-        print("VERDIEN TIL SELF UTLEIE ER NA : "+self.utleiepakker)
         self.type = type;
         self.typeMutiplier = typeMutiplier
 
