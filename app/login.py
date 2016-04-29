@@ -18,6 +18,7 @@ def load_user(user_id):
     user.get_id()
     return user
 
+
 class RegistrationForm(Form):
     name = TextField('Username', [validators.Length(min=4, max=25)])
     email = TextField('Email Address', [validators.Length(min=6, max=35)])

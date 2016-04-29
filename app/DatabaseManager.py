@@ -5,17 +5,14 @@ from flask import g
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import app
 
-
 DATABASE = 'alpin.db'
 app.config.from_object(__name__)
-
 
 def connect_db():
     """Kobler til databasen."""
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
-
 
 # lager databasen
 def init_db():
@@ -25,20 +22,17 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
-
 # Apner forbindelsen til databasen
 def get_db():
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = connect_db()
     return g.sqlite_db
 
-
 # lukker forbindelsen til databasen
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
-
 
 class dbManager:
     def __init__(self):
@@ -165,8 +159,6 @@ class dbManager:
 
     def updateMember(self, newMember):
         db = get_db();
-        # TODO feil med try catch?
-
         mem = newMember
 
         sql = 'UPDATE members SET name = "%s", email = "%s", password = "%s", paidMember = %s WHERE id=%s' % (
@@ -175,12 +167,9 @@ class dbManager:
         try:
             db.execute(sql)
             db.commit()
-            print("OKAY, db updated with sqp: " + sql)
             return True
         except:
             db.rollback()
-            print("FAILED, db did not update" + sql)
-
             return False
 
     #TODO Doublecheck if this works
@@ -194,9 +183,7 @@ class dbManager:
                 print("true")
             else:
                 amountInUse += 1;
-
         return amountInUse
-
 
     def getAllUtleiepakkerForAllYears(self):
         months = [0]*12
@@ -250,20 +237,15 @@ class Member:
 
     def set_password(self, pwIn):
         self.password = generate_password_hash(pwIn)
-        print("SETTER PASSORD")
 
     def check_password(self, pwIn):
-        value=check_password_hash(self.password, pwIn)
-        print("check_password:")
-        print(value)
-        return value
-
-    # Changes
-    """def __init__(self, name, email, password):
-        self.name = name
-        self.id = -2
-        self.email = email
-        self.password = password"""
+        try:
+            if check_password_hash(self.password, pwIn):
+                return True
+            else:
+                return False
+        except:
+            return False
 
     def get_id(self):
         print(chr(id))

@@ -72,12 +72,11 @@ def minSide():
 def updateMember():
     memberEmail = session["user_id"]
     member = dbM.getMemberFromEmail(memberEmail);
+    print("her")
     if request.method == 'POST':
-        member.email = request.form['email']
-        #TODO checkbok bool TO 1, checkbox false = 0
         member.name = request.form['name']
-        print("HER")
-        if(request.form['checkbox']=='on'):
+        print(request.form['paidMember'])
+        if(request.form['paidMember']=='yes'):
             member.paidMember = 1;
             print(member.paidMember)
         else:
@@ -193,19 +192,22 @@ def logout():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
     if request.method == 'POST':
-        email = request.form['email']
-        pw = request.form['password']
-        user = dbM.getMemberFromEmail(email)
+        try:
+            email = request.form['email']
+            pw = request.form['password']
+            user = dbM.getMemberFromEmail(email)
 
-        if (user.check_password(pw)):
-            if (login_user(user)):
-                flash('Logged in successfully.')
-            return redirect('minSide')
-        else:
-            print("feil med passord")
-        redirect('login')
+            if user is None:
+                return render_template('login.html', error="Something went wrong, please try again with a correct username and passsword")
+
+            if (user.check_password(pw)):
+                login_user(user)
+                return redirect('minSide')
+            else:
+                return render_template('login.html', error="Something went wrong, please try again with a correct username and passsword")
+        except:
+            return render_template('login.html', error="Something went wrong, please try again with a correct username and passsword")
 
     else :
         return render_template('login.html')
@@ -222,4 +224,3 @@ def register():
 
             return render_template('login.html', email=member.email)
     return render_template('newUser.html', form=form)
-

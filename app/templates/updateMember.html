@@ -8,19 +8,19 @@
 
     <h1>Oppdater medlemskapet, navn eller passord</h1>
 
-    <form action="{{ url_for('updateMember', memId=member.id) }}" method=post class=add- entry>
+    <form action="{{ url_for('updateMember') }}" method=post class=add- entry>
         <dl>
             <dt>Navn:
             <dd><input type=text size=30 name="name" value="{{member.name}}">
 
-            <dt>epost:
-            <dd><input type=text size=30 name="email" value="{{member.email}}">
-
             <dt>Password?
             <dd><input name="password" type="password" value=""> </input></dd>
 
-            <dt>medlemskap?</dt>
-            <dd><input name="checkbox" type="checkbox"> </input></dd>
+            <dt>Jeg vil være medlem</dt>
+            <dd><input name="paidMember" type="radio" value="yes" checked> </input></dd>
+
+            <dt>Jeg ikke vil være medlem</dt>
+            <dd><input name="paidMember" type="radio" value="no" > </input></dd>
 
             <dt><input type=submit value=login>
         </dl>
