@@ -1,11 +1,7 @@
-from flask import render_template, request, jsonify, flash, url_for, redirect, session
+from flask import render_template, request, jsonify, redirect, session
 import datetime
-from app.DatabaseManager import dbM, Member, UtleiePakke, ReceiptUtleiepakker, KvitteringHeiskort
+from app.DatabaseManager import dbM, ReceiptUtleiepakker, KvitteringHeiskort
 from app import app
-from app.forms import RegistrationForm
-from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in, logout_user
-
-# Routes All routes is in this file.
 
 #page to order heiskort
 @app.route('/heiskort')
@@ -48,10 +44,8 @@ def checkout(type, number, multiply):
     try:
         memberEmail = session["user_id"]
         member = dbM.getMemberFromEmail(memberEmail)
-
     except:
         return redirect('login')
-
 
     times = 1
     if (multiply=="3"):
@@ -63,8 +57,6 @@ def checkout(type, number, multiply):
     if (multiply=="1"):
         typeOfPrice = 'timepris'
         times = 1
-
-
 
     if request.method == 'GET':
         if (type == 'utleiepakker'):
@@ -98,7 +90,6 @@ def checkoutHeiskort(type, number):
         memberEmail = session["user_id"]
     except:
         return redirect('login')
-
 
     typeOfCard = "dager"
     if number=="1":

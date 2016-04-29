@@ -19,8 +19,6 @@ import nav
 #gjor alt med login
 import login
 
-# run it
-
 app.config["SECRET_KEY"] = "ITSASECRET"
 
 if __name__ == '__main__':

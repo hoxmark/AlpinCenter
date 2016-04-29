@@ -11,16 +11,16 @@
     <form action="{{ url_for('updateMember') }}" method=post class=add- entry>
         <dl>
             <dt>Navn:
-            <dd><input type=text size=30 name="name" value="{{member.name}}">
+            <dd><input type=text size=30 name="name" value="{{member.name}}"><br>
 
             <dt>Password?
-            <dd><input name="password" type="password" value=""> </input></dd>
+            <dd><input name="password" type="password" value=""> </dd> <br>
 
             <dt>Jeg vil være medlem</dt>
-            <dd><input name="paidMember" type="radio" value="yes" checked> </input></dd>
+            <dd><input name="paidMember" type="radio" value="yes" checked> </dd>
 
             <dt>Jeg ikke vil være medlem</dt>
-            <dd><input name="paidMember" type="radio" value="no" > </input></dd>
+            <dd><input name="paidMember" type="radio" value="no" > </dd>
 
             <dt><input type=submit value=login>
         </dl>

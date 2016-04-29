@@ -1,13 +1,13 @@
-from flask import render_template, request, jsonify, flash, url_for, redirect, session
-import datetime
-from app.DatabaseManager import dbM, Member, UtleiePakke, ReceiptUtleiepakker, KvitteringHeiskort
+from flask import render_template, request, redirect, session
+from app.DatabaseManager import dbM, Member
 from app import app
 from app.forms import RegistrationForm
-from flask.ext.login import LoginManager, UserMixin, login_required, login_user, user_logged_in, logout_user
+from flask.ext.login import login_required, login_user, logout_user
 
-# Routes All routes is in this file.
+#####################
+#USER VIEWS/Auth    #
+#####################
 
-#my page,
 @app.route('/minSide')
 @login_required
 def minSide():
@@ -26,16 +26,13 @@ def updateMember():
     print("her")
     if request.method == 'POST':
         member.name = request.form['name']
-        print(request.form['paidMember'])
         if(request.form['paidMember']=='yes'):
             member.paidMember = 1;
             print(member.paidMember)
         else:
             member.paidMember = 0;
-            print(member.paidMember)
-        if request.form['password']=="":
-            print("pw blanc")
-        else:
+
+        if (request.form['password'] != ""):
             member.set_password(request.form['password'])
 
         dbM.updateMember(member)
@@ -43,10 +40,6 @@ def updateMember():
 
     return render_template('updateMember.html', member=member)
 
-
-#####################
-#USER VIEWS/Auth    #
-#####################
 
 @app.route('/logout')
 def logout():
@@ -83,5 +76,5 @@ def register():
         member = Member(-3, form.name.data, form.email.data.lower(), form.password.data, 0)
         member.set_password(form.password.data)
         if(dbM.registerNewMember(member)):
-            return render_template('login.html', email=member.email)
+            return redirect('login')
     return render_template('registerNewUser.html', form=form)
