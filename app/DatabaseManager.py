@@ -40,7 +40,7 @@ class dbManager:
 
     def getUtleiePakkeFromDb(self, pakkenummer):
         db = get_db()
-        cur = db.execute('select * from utleiepakker WHERE id = ' + escape(pakkenummer))
+        cur = db.execute('select * from utleiepakker WHERE id = ?', str(pakkenummer))
         entries = cur.fetchone()
         utleiePakke = UtleiePakke(entries[0], entries[1], entries[2], entries[3], entries[4], entries[5], entries[6],
                                   entries[7])
@@ -48,7 +48,7 @@ class dbManager:
 
     def getHeiskortDB(self, heisKortid):
         db = get_db()
-        cur = db.execute('select * from heisKort WHERE id = ' + escape(str(heisKortid)))
+        cur = db.execute('select * from heisKort WHERE id = ? ' , (str(heisKortid)))
         entries = cur.fetchone()
         heiskort = Heiskort(entries[0], entries[1], entries[2])
         return heiskort
@@ -64,7 +64,7 @@ class dbManager:
 
     def getMember(self, id):
         db = get_db()
-        cur = db.execute('select * from members WHERE id =' + escape(str(id)))
+        cur = db.execute('select * from members WHERE id = ?', str(id))
         entries = cur.fetchone()
         member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
         return member
@@ -73,9 +73,12 @@ class dbManager:
     def getMemberFromEmail(self, email):
         db = get_db()
         try:
-            cur = db.execute("select * from members WHERE email = '%s'" % email);
-            entries = cur.fetchone()
-            member = Member(entries[0], entries[1], entries[2], entries[3], entries[4])
+            cur = db.execute("select * from members WHERE email = '%s'" % escape(email));    #Fungerer men er jo ikke trygg
+            ent = cur.fetchone()
+
+            print(ent)
+
+            member = Member(ent[0], ent[1], ent[2], ent[3], ent[4])
             return member
         except:
             return None
@@ -83,7 +86,7 @@ class dbManager:
     def getKvitteringHeiskort(self, id):
         kvitteringHeiskort = []
         db = get_db()
-        cur = db.execute('select * from kvitteringHeiskort WHERE owner=' + escape(str(id)))
+        cur = db.execute('select * from kvitteringHeiskort WHERE owner= ?' , str(id))
         entries = cur.fetchall()
         for row in entries:
             kvitteringHeiskort.append(KvitteringHeiskort(row[0], row[1], row[2], row[3], row[4]))
@@ -92,7 +95,7 @@ class dbManager:
     def getReceiptUtleiepakker(self, id):
         receiptUtleiepakker = []
         db = get_db()
-        cur = db.execute('select * from receiptUtleiepakker WHERE owner=' + escape(str(id)))
+        cur = db.execute('select * from receiptUtleiepakker WHERE owner=?' , str(id))
         entries = cur.fetchall()
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
@@ -101,7 +104,7 @@ class dbManager:
     def getReceiptUtleiepakkerOfKind(self, id):
         receiptUtleiepakker = []
         db = get_db()
-        cur = db.execute('select * from receiptUtleiepakker WHERE type=' + escape(str(id)))
+        cur = db.execute('select * from receiptUtleiepakker WHERE type= ?' , str(id))
         entries = cur.fetchall()
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
@@ -111,7 +114,7 @@ class dbManager:
     def getAllReceiptFromASpesificUtleiepakker(self, id):
         receiptUtleiepakker = []
         db = get_db()
-        cur = db.execute('select * from receiptUtleiepakker WHERE utleiePakke=' + escape(str(id)))
+        cur = db.execute('select * from receiptUtleiepakker WHERE utleiePakke= ?' , str(id))
         entries = cur.fetchall()
         for row in entries:
             receiptUtleiepakker.append(ReceiptUtleiepakker(row[0], row[1], row[2], row[3], row[4], row[5]))
@@ -122,7 +125,7 @@ class dbManager:
         db = get_db();
         try:
             db.execute('INSERT INTO members (name, email, password, paidMember ) VALUES(?, ?, ?,?)',
-                       [member.name, member.email, member.password, member.paidMember])
+                       [member.name, escape(member.email), member.password, member.paidMember])
             db.commit()
             return True
         except:
@@ -221,7 +224,7 @@ class Member:
     def __init__(self, id, name, email, pwIn, paidMember):
         self.name = name
         self.id = id
-        self.email = email
+        self.email = escape(email)
         self.paidMember = paidMember
         self.password = pwIn
 
@@ -248,7 +251,7 @@ class Member:
 
     def get_id(self):
         """Return the email address to satisfy Flask-Login's requirements."""
-        return self.email
+        return escape(self.email)
 
     def is_authenticated(self):
         """Return True if the user is authenticated."""

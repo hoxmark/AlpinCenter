@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session
+from flask import render_template, request, redirect, session, escape
 from app.DatabaseManager import dbM, Member
 from app import app
 from app.forms import RegistrationForm
@@ -50,10 +50,10 @@ def logout():
 def login():
     if request.method == 'POST':
         try:
-            email = request.form['email'].lower()
+            email = request.form['email']
             pw = request.form['password']
-            user = dbM.getMemberFromEmail(email)
 
+            user = dbM.getMemberFromEmail(email)
             if user is None:
                 return render_template('login.html', error="Something went wrong, please try again with a correct username and passsword")
 

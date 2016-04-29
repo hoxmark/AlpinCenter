@@ -1,3 +1,7 @@
+Databasen vil kjøres på nytt hver gang du starter opp appen.
+Så om du er innlogget mens du cleaner databasen vil brukeren bli funnet og du vil få en feilmelding.
+Da må du slette cookies får å få kommet deg inn på siden igjen..
+
 
 
 photos gotten from:
