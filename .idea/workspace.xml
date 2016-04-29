@@ -4,7 +4,6 @@
     <list default="true" id="9fcf330a-2448-4a73-84d8-a30597c76ce0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alpin.db" afterPath="$PROJECT_DIR$/alpin.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/DatabaseManager.py" afterPath="$PROJECT_DIR$/app/DatabaseManager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/login.py" afterPath="$PROJECT_DIR$/app/login.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/checkout.html" afterPath="$PROJECT_DIR$/app/templates/checkout.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user.py" afterPath="$PROJECT_DIR$/app/views/user.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
@@ -21,7 +20,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Alpin$runApp.coverage" NAME="runApp Coverage Results" MODIFIED="1461940114300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Alpin$runApp.coverage" NAME="runApp Coverage Results" MODIFIED="1461943246594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,33 +31,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DatabaseManager.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/DatabaseManager.py">
+      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.25">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <marker date="1461941014000" expanded="true" signature="1026:1064" placeholder="select * fro... utleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="1026:1065" placeholder="select * fro... utleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="1400:1435" placeholder="select * fro... heisKort" />
-                <marker date="1461941014000" expanded="true" signature="1400:1436" placeholder="select * fro... heisKort" />
-                <marker date="1461941014000" expanded="true" signature="1694:1720" placeholder="SELECT * FRO... utleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="2001:2033" placeholder="select * fro... members" />
-                <marker date="1461941014000" expanded="true" signature="2001:2035" placeholder="select * fro... members" />
-                <marker date="1461941014000" expanded="true" signature="2327:2367" placeholder="select * fro... members" />
-                <marker date="1461941014000" expanded="true" signature="2735:2780" placeholder="select * fro... kvitteringHeiskort" />
-                <marker date="1461941014000" expanded="true" signature="2735:2782" placeholder="select * fro... kvitteringHeiskort" />
-                <marker date="1461941014000" expanded="true" signature="3112:3158" placeholder="select * fro... receiptUtleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="3112:3159" placeholder="select * fro... receiptUtleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="3506:3551" placeholder="select * fro... receiptUtleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="3506:3553" placeholder="select * fro... receiptUtleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="3911:3963" placeholder="select * fro... receiptUtleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="3911:3965" placeholder="select * fro... receiptUtleiepakker" />
-                <marker date="1461941014000" expanded="true" signature="4285:4359" placeholder="INSERT INTO members... " />
-                <marker date="1461941014000" expanded="true" signature="4719:4822" placeholder="INSERT INTO receiptUtleiepakker... " />
-                <marker date="1461941014000" expanded="true" signature="5265:5351" placeholder="INSERT INTO kvitteringHeiskort... " />
-                <marker date="1461941014000" expanded="true" signature="5709:5797" placeholder="UPDATE membe... " />
+                <element signature="e#0#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utleieAndHeiskort.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/utleieAndHeiskort.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#70#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,62 +58,18 @@
       <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6666666">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.4444447">
+              <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schema.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="schema.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/schema.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="28" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/user.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/login.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="formhelpers.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/formhelpers.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="checkout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/checkout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.0">
-              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.26717559">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -149,10 +96,10 @@
         <option value="$PROJECT_DIR$/app/views/utleieAndHeiskort.py" />
         <option value="$PROJECT_DIR$/app/templates/updateMember.html" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
-        <option value="$PROJECT_DIR$/app/templates/checkout.html" />
         <option value="$PROJECT_DIR$/app/login.py" />
-        <option value="$PROJECT_DIR$/app/DatabaseManager.py" />
+        <option value="$PROJECT_DIR$/app/templates/checkout.html" />
         <option value="$PROJECT_DIR$/app/views/user.py" />
+        <option value="$PROJECT_DIR$/app/DatabaseManager.py" />
         <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
@@ -550,7 +497,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="0" width="1276" height="800" extended-state="6" />
+    <frame x="4" y="0" width="1276" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25931928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -581,9 +528,9 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32929292" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25506938" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25931928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -660,29 +607,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/DatabaseManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2863706">
+          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1461942885000" expanded="true" signature="1026:1064" placeholder="select * fro... utleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="1026:1065" placeholder="select * fro... utleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="1400:1435" placeholder="select * fro... heisKort" />
+            <marker date="1461942885000" expanded="true" signature="1400:1436" placeholder="select * fro... heisKort" />
+            <marker date="1461942885000" expanded="true" signature="1694:1720" placeholder="SELECT * FRO... utleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="2001:2033" placeholder="select * fro... members" />
+            <marker date="1461942885000" expanded="true" signature="2001:2035" placeholder="select * fro... members" />
+            <marker date="1461942885000" expanded="true" signature="2327:2367" placeholder="select * fro... members" />
+            <marker date="1461942885000" expanded="true" signature="2710:2755" placeholder="select * fro... kvitteringHeiskort" />
+            <marker date="1461942885000" expanded="true" signature="2710:2757" placeholder="select * fro... kvitteringHeiskort" />
+            <marker date="1461942885000" expanded="true" signature="3087:3133" placeholder="select * fro... receiptUtleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="3087:3134" placeholder="select * fro... receiptUtleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="3481:3526" placeholder="select * fro... receiptUtleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="3481:3528" placeholder="select * fro... receiptUtleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="3886:3938" placeholder="select * fro... receiptUtleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="3886:3940" placeholder="select * fro... receiptUtleiepakker" />
+            <marker date="1461942885000" expanded="true" signature="4260:4334" placeholder="INSERT INTO members... " />
+            <marker date="1461942885000" expanded="true" signature="4694:4797" placeholder="INSERT INTO receiptUtleiepakker... " />
+            <marker date="1461942885000" expanded="true" signature="5240:5326" placeholder="INSERT INTO kvitteringHeiskort... " />
+            <marker date="1461942885000" expanded="true" signature="5684:5772" placeholder="UPDATE membe... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/updateMember.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85106385">
+        <state vertical-scroll-proportion="0.5487805">
           <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/utleieAndHeiskort.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/minSide.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06711409">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#70#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/checkout.html">
+    <entry file="file://$PROJECT_DIR$/app/login.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.0">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.22058824">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -694,69 +671,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/login.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/checkout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-0.48018292">
+          <caret line="13" column="111" selection-start-line="13" selection-start-column="111" selection-end-line="13" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6006098">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/schema.sql">
+    <entry file="file://$PROJECT_DIR$/app/views/utleieAndHeiskort.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="28" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="28" />
-          <folding />
+          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6666666">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.4444447">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/DatabaseManager.py">
+    <entry file="file://$PROJECT_DIR$/app/schema.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.25">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <marker date="1461941014000" expanded="true" signature="1026:1064" placeholder="select * fro... utleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="1026:1065" placeholder="select * fro... utleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="1400:1435" placeholder="select * fro... heisKort" />
-            <marker date="1461941014000" expanded="true" signature="1400:1436" placeholder="select * fro... heisKort" />
-            <marker date="1461941014000" expanded="true" signature="1694:1720" placeholder="SELECT * FRO... utleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="2001:2033" placeholder="select * fro... members" />
-            <marker date="1461941014000" expanded="true" signature="2001:2035" placeholder="select * fro... members" />
-            <marker date="1461941014000" expanded="true" signature="2327:2367" placeholder="select * fro... members" />
-            <marker date="1461941014000" expanded="true" signature="2735:2780" placeholder="select * fro... kvitteringHeiskort" />
-            <marker date="1461941014000" expanded="true" signature="2735:2782" placeholder="select * fro... kvitteringHeiskort" />
-            <marker date="1461941014000" expanded="true" signature="3112:3158" placeholder="select * fro... receiptUtleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="3112:3159" placeholder="select * fro... receiptUtleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="3506:3551" placeholder="select * fro... receiptUtleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="3506:3553" placeholder="select * fro... receiptUtleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="3911:3963" placeholder="select * fro... receiptUtleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="3911:3965" placeholder="select * fro... receiptUtleiepakker" />
-            <marker date="1461941014000" expanded="true" signature="4285:4359" placeholder="INSERT INTO members... " />
-            <marker date="1461941014000" expanded="true" signature="4719:4822" placeholder="INSERT INTO receiptUtleiepakker... " />
-            <marker date="1461941014000" expanded="true" signature="5265:5351" placeholder="INSERT INTO kvitteringHeiskort... " />
-            <marker date="1461941014000" expanded="true" signature="5709:5797" placeholder="UPDATE membe... " />
-          </folding>
+        <state vertical-scroll-proportion="0.26717559">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

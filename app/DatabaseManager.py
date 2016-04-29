@@ -75,9 +75,6 @@ class dbManager:
         try:
             cur = db.execute("select * from members WHERE email = '%s'" % escape(email));    #Fungerer men er jo ikke trygg
             ent = cur.fetchone()
-
-            print(ent)
-
             member = Member(ent[0], ent[1], ent[2], ent[3], ent[4])
             return member
         except:

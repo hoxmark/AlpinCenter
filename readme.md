@@ -1,7 +1,8 @@
 Databasen vil kjøres på nytt hver gang du starter opp appen.
-Så om du er innlogget mens du cleaner databasen vil brukeren bli funnet og du vil få en feilmelding.
-Da må du slette cookies får å få kommet deg inn på siden igjen..
+Så om du er innlogget mens du cleaner databasen vil brukeren fortsatt være innlogget.
+Da må du slette cookies får å få kommet deg inn på siden igjen, eller trykke på minside(da vil den logge deg ut).
 
+Om jeg hadde gjort prosjektet på nytt hadde jeg bruke SQLAlchemy.
 
 
 photos gotten from:

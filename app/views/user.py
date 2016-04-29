@@ -9,10 +9,13 @@ from flask.ext.login import login_required, login_user, logout_user
 #####################
 
 @app.route('/minSide')
-@login_required
 def minSide():
     memberEmail = session["user_id"]
     member = dbM.getMemberFromEmail(memberEmail);
+    if (member is None):
+        logout_user()
+        return redirect('login')
+
     listOfRecipts = dbM.getKvitteringHeiskort(member.id) + dbM.getReceiptUtleiepakker(member.id);
     listOfRecipts.sort(key=lambda r: r.startTime)
     return render_template('minSide.html', member=member, listOfRecipts=listOfRecipts)
@@ -23,12 +26,10 @@ def minSide():
 def updateMember():
     memberEmail = session["user_id"]
     member = dbM.getMemberFromEmail(memberEmail);
-    print("her")
     if request.method == 'POST':
         member.name = request.form['name']
         if(request.form['paidMember']=='yes'):
             member.paidMember = 1;
-            print(member.paidMember)
         else:
             member.paidMember = 0;
 
